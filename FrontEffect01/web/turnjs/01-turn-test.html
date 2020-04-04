@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="zh-CN" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="zh-CN" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="zh-CN" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="zh-CN" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="zh-CN"> <!--<![endif]-->
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/modernizr.2.5.3.min.js"></script>
+    <style>
+        *{padding: 0px;margin: 0px}
+        body{
+            overflow: hidden;
+        }
+        .container{
+            width: 800px;
+            height:600px;
+            border: 1px solid red;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin:auto;
+            transform: translate(-50%,-50%);
+        }
+        /*错误的对每一页的样式处理*/
+        /*#flipbook>div{*/
+            /*background-color: lightgreen;*/
+        /*}*/
+        /*正确的对每一页的样式处理*/
+        #flipbook .page{
+            background-color: lightgreen;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="flipbook">
+            <div class=""> Turn.js </div>
+            <div class=""></div>
+            <div > Page 1 </div>
+            <div > Page 2 </div>
+            <div > Page 3 </div>
+            <div > Page 4 </div>
+            <div class="hard "></div>
+            <div class="hard "></div>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    yepnope({
+        test:Modernizr.csstransforms,
+        yep:['../js/turn.min.js'],
+        nope:['../js/turn.html4.min.js'],
+//        both:[],
+        complete: function () {
+            $("#flipbook").turn({
+                width: 800,
+                height: 600,
+                autoCenter: true
+            });
+        }
+    })
+</script>
+</body>
+</html>

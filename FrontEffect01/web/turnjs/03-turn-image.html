@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html lang="zh-CN" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<html lang="zh-CN" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>
+<html lang="zh-CN" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<html lang="zh-CN" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title>杀戮都市</title>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/modernizr.2.5.3.min.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px
+        }
+
+        body {
+            overflow: hidden;
+        }
+        .container {
+            width: 900px;
+            height: 650px;
+            border: 0px solid red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: auto;
+            transform: translate(-50%, -50%);
+        }
+        /*给图书添加阴影*/
+        .flipbook .shadow{
+            box-shadow: 0 0 20px grey;
+        }
+        /*奇偶页的设置模糊*/
+        /*.flipbook .odd{*/
+        /*    filter: blur(10px);*/
+        /*}*/
+        .flipbook .p1{
+            filter: blur(10px);
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            function loadBook(){
+                $(".flipbook").turn({
+                    width: 900,
+                    height: 650,
+                    autoCenter: false,
+                    page: 1
+                });
+            }
+            yepnope({
+                test: Modernizr.csstransforms,
+                yep: ['../js/turn.min.js'],
+                nope: ['../js/turn.html4.min.js'],
+//        both:[],
+                complete: loadBook
+
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="flipbook">
+        <div style="background-image: url('../images/1.jpg')"></div>
+        <div style="background-image: url('../images/2.jpg')"></div>
+        <div style="background-image: url('../images/3.jpg')"></div>
+        <div style="background-image: url('../images/4.jpg')"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]>
+<html lang="zh-CN" class="ie6"> <![endif]-->
+<!--[if IE 7 ]>
+<html lang="zh-CN" class="ie7"> <![endif]-->
+<!--[if IE 8 ]>
+<html lang="zh-CN" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>
+<html lang="zh-CN" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="zh-CN"> <!--<![endif]-->
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/modernizr.2.5.3.min.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .container {
+            width: 800px;
+            height: 600px;
+            border: 1px solid red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: auto;
+            transform: translate(-50%, -50%);
+        }
+
+        /*错误的对每一页的样式处理*/
+        /*#flipbook>div{*/
+        /*background-color: lightgreen;*/
+        /*}*/
+        /*正确的对每一页的样式处理*/
+        .flipbook .page {
+            background-color: lightgreen;
+
+        }
+        /*给图书添加阴影*/
+        .flipbook .shadow{
+            box-shadow: 0 0 20px grey;
+        }
+        /*对封面进行编写*/
+        /*.flipbook .page:first-child{*/
+        /*    display: flex;*/
+        /*}*/
+        .my-first-page {
+            margin: auto;
+            width: 243px;
+            height: 280px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        h3 {
+            text-align: center;
+            line-height: 2;
+        }
+
+        .my-content {
+            padding: 50px 30px 50px 30px;
+            height: 500px;
+            position: relative;
+        }
+
+        .my-content p {
+            text-indent: 28px;
+        }
+
+        .my-content p:nth-of-type(1):first-letter {
+            font-size: 50px;
+        }
+
+        /*    页面H6的样式*/
+        .my-content h6 {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            yepnope({
+                test: Modernizr.csstransforms,
+                yep: ['../js/turn.min.js'],
+                nope: ['../js/turn.html4.min.js'],
+//        both:[],
+                complete: function () {
+                    $(".flipbook").turn({
+                        width: 800,
+                        height: 600,
+                        autoCenter: true,
+                        page: 1
+                    });
+                }
+
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="container">
+    <div class="flipbook">
+        <!--封面-->
+        <div class="hard">
+            <div class="my-first-page">
+                <img src="../images/dice.jpg">
+                <h1>上帝掷骰子吗？</h1>
+            </div>
+        </div>
+        <!--        第一页-->
+        <div class="hard"></div>
+        <!--        第二页-->
+        <div class="">
+            <div class="my-content">
+                <h3>第一章</h3>
+                <p>我们的故事要从1887年的德国开始。位于莱茵河边的卡尔斯鲁厄是一座风景秀丽的城市，在它的城中心，矗立着著名的18世纪的宫
+                    殿。郁郁葱葱的森林和温暖的气候也使得这座小城成为了欧洲的一个旅游名胜。然而这些怡人的景色似乎没有分散海因里希鲁道夫赫兹（ Heinrich Rudolf
+                    Hertz）的注意力：现在他正在卡尔斯鲁厄大学的一间实验室里专心致志地摆弄他的仪器。那时候，赫兹刚刚30岁，也许不会想到 他将在科学史上成为和他的老师赫耳姆霍兹（Hermann von
+                    Helmholtz）一样鼎鼎有名的人物，不会想到他将和卡尔本茨（Carl
+                    Benz）一样成为这个小城的骄傲。现在他的心思，只是完完全全地倾注在他的那套装置上。赫兹的装置在今天看来是很简单的：它的主要部分是一个电火花发生器，有两个相隔很近的小铜球作为电容。赫兹全神贯注地注视着这两
+                    个相对而视的铜球，然后合上了电路开关。
+                </p>
+                <h3>第二章</h3>
+                <p>上次我们说到，1887年，赫兹的实验证 </p>
+                <h6>第1页</h6>
+            </div>
+        </div>
+        <div class="">
+            <div class="my-content">
+                <h3>第二章</h3>
+                <p>上次我们说到，1887年，赫兹的实验证实了电磁波的存在，也证实了光其实是电磁波的一种，两者具有共同的波的特性。这就为光的
+                    本性之争画上了一个似乎已经是不可更改的句号。说到这里，我们的故事要先回一回头，穿越时空去回顾一下有关于光的这场大战。这也许是物理史上持续时间最长，程度最激烈的一场论
+                    战。它几乎贯穿于整个现代物理的发展过程中，在历史上烧灼下了永不磨灭的烙印。 光，是每个人见得最多的东西（“见得最多”在这里用得真是一点也不错）。自古以来，它就被理所当然地认为是这个宇宙最原始的事物
+                    之一。在远古的神话中，往往是“一道亮光”劈开了混沌和黑暗，于是世界开始了运转。光在人们的心目中，永远代表着生命，活力和希
+                    望。在《圣经》里，神要创造世界，首先要创造的就是光，可见它在这个宇宙中所占的独一无二的地位。
+                </p>
+                <h6>第2页</h6>
+            </div>
+        </div>
+        <div class="hard">
+            <div class="my-content">
+                <h3>第三章</h3>
+                <p>关于光究竟是什么的问题，在十七世纪中期有了两种可能的假设：微粒说和波动说。然而在一开始的时候，双方的武装都是非常薄弱的。微粒说固然有着悠久的历史，但是它手中的力量是很有限的。光的直线传播问题和反
+                    射折射问题本来是它的传统领地，但波动方面军队在发展了自己的理论后，迅速就在这两个战场上与微粒平分秋色。而波动论作为一种新
+                    兴的理论，格里马第的光衍射实验是它发家的最大法宝，但它却拖着一个沉重的包袱，就是光以太的假设，这个凭空想象出来的媒介，将在很长一段时 间里成为波动军队的累赘。
+                </p>
+                <h6>第3页</h6>
+            </div>
+        </div>
+        <div class="hard">
+            <div class="my-first-page">
+                <img src="../images/atom.jpg" alt="" width="200px" height="200px">
+                <h3>你要知道科学方法的实质，不要去听一个科学家对你说些什么，而要仔细看他在做什么。 —— 爱因斯坦
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
