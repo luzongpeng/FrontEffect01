@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>杀戮都市漫画</title>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/modernizr.2.5.3.min.js"></script>
+    <script src="../js/zoom.min.js"></script>
+    <style>
+        *{padding: 0px;margin: 0px}
+        body{
+            overflow: hidden;
+        }
+        .container{
+            width: 900px;
+            height:650px;
+            border: 0px solid red;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin:auto;
+            /*transform: translate(-50%,-50%);*/
+        }
+        /*使用CSS控制图书的尺寸*/
+        .flipbook{
+            width:900px;
+            height:650px;
+            left:-450px;
+            top:-325px;
+        }
+        /*正确的给图书添加阴影的代码*/
+        .flipbook .shadow{
+            box-shadow: 0 0 20px grey;
+        }
+        .flipbook .page{
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .my-btns button{
+            font-size: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            function loadBook(){
+                $(".flipbook").turn({
+                    page:1,// 图书在开始时显示到的页数
+                    autoCenter: true,
+                    pages:6
+                });
+
+                // 初始化zoom，必须得是爷爷元素
+                $("body").zoom({
+                    max:1.2,// 放大因数
+                    duration:1000,// 动画过度时间
+                    flipbook:$(".flipbook")// 图书的jquery对象
+                });
+
+                // 正确的设置body的宽和高
+                $("body").css({
+                    width:$(window).width(),
+                    height:$(window).height()
+                })
+            }
+            yepnope({
+                test:Modernizr.csstransforms,
+                yep:['../js/turn.min.js'],
+                nope:['../js/turn.html4.min.js'],
+                complete: loadBook
+            })
+//            放大的点击函数
+            var zoomIn = false;
+            $("#zoominBtn").on("click", function () {
+                //$(".flipbook").turn("zoom",1.2,500);
+//                if($(".flipbook").turn("zoom") == 1){
+                if(zoomIn == false){
+                    zoomIn = true;
+                    $("body").zoom("zoomIn");
+                }
+            })
+            // 缩小代码
+            $("#zoomoutBtn").on("click", function () {
+                //$(".flipbook").turn("zoom",0.5,500);
+//                if($(".flipbook").turn("zoom") != 1) {
+                if(zoomIn == true){
+                    zoomIn = false;
+                    $("body").zoom("zoomOut");
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="my-btns">
+    <button id="zoominBtn">放大</button>
+    <button id="zoomoutBtn">缩小</button>
+</div>
+<div class="container">
+    <div class="flipbook">
+        <div class="hard" style="background-image: url('../images/1.jpg')"></div>
+        <div style="background-image: url('../images/2.jpg')"></div>
+        <div style="background-image: url('../images/3.jpg')"></div>
+        <div style="background-image: url('../images/4.jpg')"></div>
+        <div style="background-image: url('../images/5.jpg')"></div>
+        <div style="background-image: url('../images/6.jpg')"></div>
+    </div>
+</div>
+</body>
+</html>

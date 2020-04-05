@@ -30,7 +30,7 @@
             top: 50%;
             left: 50%;
             margin: auto;
-            transform: translate(-50%, -50%);
+            transform: translate(-25%, -50%);
         }
         /*给图书添加阴影*/
         .flipbook .shadow{
@@ -46,8 +46,13 @@
         }
         .flipbook{
         /*    设置图书尺寸*/
-            width: 900px;
+            width: 450px;
             height: 650px;
+        }
+        .my-btns>button{
+            font-size: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
         }
     </style>
     <script type="text/javascript">
@@ -58,15 +63,12 @@
                     // height: 650,
                     autoCenter: true,
                     page: 1,
-                    pages:6,
-                    direction:"ltr",
-                    when:{
-                        turned: function (ev,page,pageObj) {
-                            console.log("第"+page+"翻过去了");
-                        }
-                    }
-
-
+                    //设置显示的为单页还是双页
+                    display:"single",
+                    //设置翻页时间
+                    duration:800,
+                    //渐变色
+                    gradients:true,
                 });
             }
             yepnope({
@@ -77,10 +79,18 @@
                 complete: loadBook
 
             });
+            $("#get-prop").on("click",function () {
+                console.log("翻书方向"+$(".flipbook").turn("direction"));
+                console.log("总页数"+$(".flipbook").turn("pages"));
+                console.log("当前页"+$(".flipbook").turn("page"));
+            })
         });
     </script>
 </head>
 <body>
+<div class="my-btns">
+    <button id="get-prop">获取属性</button>
+</div>
 <div class="container">
     <div class="flipbook">
         <div style="background-image: url('../images/1.jpg')"></div>

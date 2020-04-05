@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>杀戮都市漫画</title>
+    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="../js/modernizr.2.5.3.min.js"></script>
+    <style>
+        *{padding: 0px;margin: 0px}
+        body{
+            overflow: hidden;
+        }
+        .container{
+            width: 900px;
+            height:650px;
+            border: 0px solid red;
+            position: absolute;
+            top:50%;
+            left:50%;
+            margin:auto;
+            transform: translate(-50%,-50%);
+        }
+        /*使用CSS控制图书的尺寸*/
+        .flipbook{
+            width:900px;
+            height:650px;
+        }
+        /*正确的给图书添加阴影的代码*/
+        .flipbook .shadow{
+            box-shadow: 0 0 20px grey;
+        }
+        .my-btns button{
+            font-size: 30px;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 跳转到指定页码
+        function pageto(num){
+            $(".flipbook").turn("page",num).turn("stop");
+        }
+        $(function () {
+            function loadBook(){
+                $(".flipbook").turn({
+                    page:1,// 图书在开始时显示到的页数
+                    autoCenter: true,
+                    pages:6,
+                    when:{
+                        turned: function (ev,page,pageObj) {
+                            console.log("第" + page + "翻过去了");
+                        }
+                    }
+                });
+            }
+            yepnope({
+                test:Modernizr.csstransforms,
+                yep:['../js/turn.min.js'],
+                nope:['../js/turn.html4.min.js'],
+                complete: loadBook
+            })
+            $("#addpage").on("click", function () {
+//                var newPage = $(`<div style="background-image: url('../images/5.jpg')"></div>`);
+//                $(".flipbook").turn("addPage",newPage,5);
+//                var newPage2 = $(`<div style="background-image: url('../images/6.jpg')"></div>`);
+//                $(".flipbook").turn("addPage",newPage2,6);
+                for(var i = 1; i <= 6;i++){
+                    if($(".flipbook").turn("hasPage",i) == false){
+                        var newPage2 = $(`<div style="background-image: url('../images/` + i + `.jpg')"></div>`);
+                        $(".flipbook").turn("addPage",newPage2,i);
+                    }else{
+                        console.log("第" +i + " 已经存在了");
+                    }
+                }
+            })
+            $("#delpage").on("click", function () {
+                $(".flipbook").turn("removePage",1);
+            })
+            $("#delall").on("click", function () {
+                $(".flipbook").turn("destroy");
+            })
+//            上一页的点击函数
+            $("#prevpage").on("click", function () {
+                $(".flipbook").turn("previous").turn("stop");
+            })
+//            下一页的点击函数
+            $("#nextpage").on("click", function () {
+                $(".flipbook").turn("next").turn("stop");
+            })
+            // 卷页代码
+            $("#peelbtn").on("click", function () {
+                $(".flipbook").turn("peel","r");
+            })
+        })
+    </script>
+</head>
+<body>
+<div class="my-btns">
+    <button id="addpage">添加页</button>
+    <button id="delpage">删除页</button>
+    <button id="delall">删除所有</button>
+    <a href="javascript:pageto(1)">1</a>
+    <a href="javascript:pageto(2)">2</a>
+    <a href="javascript:pageto(3)">3</a>
+    <a href="javascript:pageto(4)">4</a>
+    <a href="javascript:pageto(5)">5</a>
+    <a href="javascript:pageto(6)">6</a>
+    <button id="prevpage">上一页</button>
+    <button id="nextpage">下一页</button>
+    <button id="peelbtn">卷页</button>
+</div>
+<div class="container">
+    <div class="flipbook">
+        <div class="hard" style="background-image: url('../images/1.jpg')"></div>
+        <div style="background-image: url('../images/2.jpg')"></div>
+        <div style="background-image: url('../images/3.jpg')"></div>
+        <div style="background-image: url('../images/4.jpg')"></div>
+    </div>
+</div>
+</body>
+</html>
